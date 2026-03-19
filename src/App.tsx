@@ -850,7 +850,7 @@ const Logo = ({ isSticky, onClick }: { isSticky: boolean; onClick?: () => void }
   >
     {/* Mobile/Tablet Logo */}
     <img 
-      src="/capitello-phi.png" 
+      src="/logo-phi-orizzontale-no-sfondo-testo-grigio.png" 
       alt="Parc Hotels Italia - Logo Mobile" 
       className={`md:hidden transition-all duration-500 ${isSticky ? 'h-8' : 'h-10'} w-auto`}
     />
@@ -1577,7 +1577,7 @@ export default function App() {
             "name": "Parc Hotels Italia",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://www.parchotels.it/logo.png"
+              "url": "/logo-phi-orizzontale-no-sfondo-testo-grigio.png"
             }
           }
         })}
