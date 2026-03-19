@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #E03126;
+  --color-primary-dark: #C1271F;
+  --color-accent: #FDE9E8;
+  --color-bg: #FFFFFF;
+  --color-bg-soft: #FFF9F3;
+  --color-text-main: #222222;
+  --color-text-muted: #555555;
+  --color-text-on-primary: #FFFFFF;
+
+  --font-heading: "Lora", "Times New Roman", serif;
+  --font-body: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+
+  /* Mappings for existing App.tsx classes */
+  --font-serif: var(--font-heading);
+  --font-sans: var(--font-body);
+  --color-brand-red: var(--color-primary);
+}
+
+:root {
+  --color-primary: #E03126;
+  --color-primary-dark: #C1271F;
+  --color-accent: #FDE9E8;
+  --color-bg: #FFFFFF;
+  --color-bg-soft: #FFF9F3;
+
+  --color-text-main: #222222;
+  --color-text-muted: #555555;
+  --color-text-on-primary: #FFFFFF;
+
+  --font-heading: "Lora", "Times New Roman", serif;
+  --font-body: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text-main);
+    background-color: var(--color-bg);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  /* Global Typography Optimization - Anti-Hyphenation & Strict Left Alignment */
+  /* NOTA: h4 è ESCLUSO da questa regola per permettere la centratura nelle card hotel */
+  body, p, span, li, a, h1, h2, h3, h5, h6, button, .btn, .h1, .h2, .h3 {
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    -ms-hyphens: none !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    white-space: normal !important;
+    text-indent: 0 !important;
+    text-align: left !important;
+  }
+
+  /* h4 separato: stesse regole anti-hyphenation ma SENZA text-align forzato */
+  h4 {
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    -ms-hyphens: none !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    white-space: normal !important;
+    text-indent: 0 !important;
+  }
+
+  /* Allineamento a Sinistra Rigoroso (Zero Rientri) */
+  p, h1, h2, h3, h4, h5, h6, li, ul, ol {
+    padding-left: 0 !important;
+    text-indent: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  /* Forza Spaziatura per Blocchi con Bordo Laterale (Richiesta Urgente) */
+  .border-l-4, .border-l-2 {
+    padding-left: 40px !important;
+  }
+
+  ul, ol {
+    list-style-position: inside !important;
+  }
+
+  /* Centratura Globale dei Pulsanti (CTA) */
+  .btn-centered {
+    display: table !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: auto !important;
+    text-align: center !important;
+    float: none !important;
+  }
+
+  /* Contenitore per centrare pulsanti flex */
+  .flex-center-button {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  h1, .h1 {
+    @apply font-heading font-bold leading-tight;
+  }
+
+  @media (max-width: 768px) {
+    h2, .h2 {
+      font-size: clamp(1.5rem, 6vw, 2rem) !important;
+      line-height: 1.2 !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1, .h1 {
+      font-size: 1.75rem !important;
+      line-height: 1.2;
+    }
+    h2, .h2 {
+      font-size: 1.5rem !important;
+    }
+    h3, .h3 {
+      font-size: 1.25rem !important;
+    }
+    .max-w-7xl, .max-w-4xl, .max-w-3xl, .container {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-7 py-3 rounded-lg font-body font-bold no-underline transition duration-200 ease-in-out border cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-[var(--color-primary)] text-white border-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)];
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-[var(--color-primary)] border-[var(--color-primary)] hover:bg-[var(--color-accent)];
+  }
+
+  .btn-outline-white {
+    @apply bg-transparent text-white border-white hover:bg-white/10;
+  }
+
+  .h1 {
+    @apply font-heading text-4xl md:text-6xl font-bold leading-tight;
+  }
+
+  .h2 {
+    @apply font-heading text-3xl md:text-5xl font-bold leading-tight;
+  }
+
+  .h3 {
+    @apply font-heading text-2xl md:text-3xl font-bold;
+  }
+  
+  .text-body {
+    @apply font-body text-base leading-relaxed text-[var(--color-text-muted)] font-normal;
+  }
+}
+
+@layer utilities {
+  .logo-full {
+    @apply transition-all duration-500 ease-in-out opacity-100 scale-100;
+  }
+  
+  .logo-square {
+    @apply transition-all duration-500 ease-in-out opacity-100 scale-100 rounded-[4px] overflow-hidden;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    object-position: left;
+  }
+
+  .sticky-header-shadow {
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Link styles for articles */
+  .prose a {
+    @apply font-bold text-black no-underline transition-colors duration-200;
+  }
+
+  .prose a:hover,
+  .prose a:active {
+    @apply text-brand-red underline;
+  }
+}
+
+/* --- HOTEL PROMO SECTION (BLUE BAND) OPTIMIZATION --- */
+.hotel-promo-section {
+  text-align: center !important;
+}
+
+.hotel-promo-section h2,
+.hotel-promo-section h3,
+.hotel-promo-section h4 {
+  text-align: center !important;
+}
+
+.hotel-promo-section .hotel-card-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 1.5rem !important;
+}
+
+.hotel-promo-section .hotel-stars {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  margin-bottom: 0.75rem !important;
+  width: 100% !important;
+}
+
+.hotel-promo-section .hotel-name {
+  margin-bottom: 0.5rem !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.hotel-promo-section .hotel-location {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-bottom: 1.5rem !important;
+  width: 100% !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.875rem !important;
+}
+
+.hotel-promo-section .hotel-cta {
+  margin: 0 auto !important;
+  display: inline-flex !important;
+}
+
+/* --- HERO TITLE OPTIMIZATION (URGENT FIX) --- */
+.hero-title {
+  font-family: var(--font-heading) !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
+  text-align: left !important;
+  hyphens: none !important;
+  word-break: keep-all !important;
+  
+  /* Mobile: 24px - 28px */
+  font-size: clamp(24px, 7vw, 28px) !important;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    /* Tablet: 32px - 38px */
+    font-size: clamp(32px, 5vw, 38px) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    /* Desktop: 48px - 54px */
+    font-size: clamp(48px, 4vw, 54px) !important;
+  }
+}
+
+/* --- ARTICLE HERO OVERLAY OPTIMIZATION (PESCHIERA STYLE) --- */
+.article-hero-container {
+  @apply relative aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl;
+}
+
+@media (min-width: 1024px) {
+  .article-hero-container {
+    max-height: 550px !important; /* Limite altezza desktop tra 500px e 600px */
+  }
+}
+
+.article-hero-title {
+  font-family: var(--font-heading) !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
+  text-align: left !important;
+  hyphens: none !important;
+  word-break: keep-all !important;
+  color: white !important;
+  font-size: clamp(20px, 6vw, 24px) !important;
+}
+
+.article-hero-meta {
+  font-family: var(--font-montserrat) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  text-align: left !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: clamp(9px, 2.5vw, 11px) !important;
+}
+
+@media (min-width: 768px) {
+  .article-hero-title {
+    font-size: clamp(28px, 4vw, 34px) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-hero-title {
+    /* Ridimensionamento Titolo Desktop: max 42px - 48px */
+    font-size: clamp(36px, 3vw, 46px) !important;
+  }
+}
+
+/* --- CATEGORY BAR MOBILE OPTIMIZATION --- */
+.category-nav-bar .mobile-br {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .category-nav-bar .category-item {
+    white-space: normal !important;
+    text-align: left !important;
+    line-height: 1.2 !important;
+    min-width: fit-content;
+  }
+
+  .category-nav-bar .category-text-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .category-nav-bar .mobile-br {
+    display: block;
+    height: 0;
+  }
+
+  /* --- PARC CLUB DESCRIPTION MOBILE OPTIMIZATION --- */
+  .parc-club-description {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+  }
+}
